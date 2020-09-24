@@ -19,9 +19,20 @@ public class Pawn extends AbstractPiece {
         Coordinates to = null;
 
         if (this.getColour() == PlayerColour.WHITE) {
+            if (from.getRow() == 6) {
+                to = new Coordinates(from.getRow()-2, from.getCol());
+                allowedMoves.add(new Move(from, to));
+            }
             to = new Coordinates(from.getRow()-1, from.getCol());
-        } else if (this.getColour() == PlayerColour.BLACK) {
+            allowedMoves.add(new Move(from, to));
+        }
+        else if (this.getColour() == PlayerColour.BLACK) {
+            if (from.getRow() == 1) {
+                to = new Coordinates(from.getRow()+2, from.getCol());
+                allowedMoves.add(new Move(from, to));
+            }
             to = new Coordinates(from.getRow()+1, from.getCol());
+            allowedMoves.add(new Move(from, to));
         }
 
         allowedMoves.add(new Move(from, to));
