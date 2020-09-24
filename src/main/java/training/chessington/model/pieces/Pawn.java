@@ -20,28 +20,32 @@ public class Pawn extends AbstractPiece {
         Coordinates to = null;
 
         if (this.getColour() == PlayerColour.WHITE) {
-            if (from.getRow() == 6) {
-                to = new Coordinates(from.getRow()-2, from.getCol());
+            if (from.getRow() != 0) {
+                if (from.getRow() == 6) {
+                    to = new Coordinates(from.getRow() - 2, from.getCol());
+                    if (board.get(to) == null) {
+                        allowedMoves.add(new Move(from, to));
+                    }
+                }
+                to = new Coordinates(from.getRow() - 1, from.getCol());
                 if (board.get(to) == null) {
                     allowedMoves.add(new Move(from, to));
                 }
-            }
-            to = new Coordinates(from.getRow()-1, from.getCol());
-            if (board.get(to) == null) {
-                allowedMoves.add(new Move(from, to));
             }
         }
 
         else if (this.getColour() == PlayerColour.BLACK) {
-            if (from.getRow() == 1) {
-                to = new Coordinates(from.getRow()+2, from.getCol());
+            if (from.getRow() != 7) {
+                if (from.getRow() == 1) {
+                    to = new Coordinates(from.getRow() + 2, from.getCol());
+                    if (board.get(to) == null) {
+                        allowedMoves.add(new Move(from, to));
+                    }
+                }
+                to = new Coordinates(from.getRow() + 1, from.getCol());
                 if (board.get(to) == null) {
                     allowedMoves.add(new Move(from, to));
                 }
-            }
-            to = new Coordinates(from.getRow()+1, from.getCol());
-            if (board.get(to) == null) {
-                allowedMoves.add(new Move(from, to));
             }
         }
 
