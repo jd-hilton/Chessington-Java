@@ -4,6 +4,7 @@ import training.chessington.model.Board;
 import training.chessington.model.Coordinates;
 import training.chessington.model.Move;
 import training.chessington.model.PlayerColour;
+import training.chessington.view.PieceDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,21 +22,29 @@ public class Pawn extends AbstractPiece {
         if (this.getColour() == PlayerColour.WHITE) {
             if (from.getRow() == 6) {
                 to = new Coordinates(from.getRow()-2, from.getCol());
-                allowedMoves.add(new Move(from, to));
+                if (board.get(to) == null) {
+                    allowedMoves.add(new Move(from, to));
+                }
             }
             to = new Coordinates(from.getRow()-1, from.getCol());
-            allowedMoves.add(new Move(from, to));
+            if (board.get(to) == null) {
+                allowedMoves.add(new Move(from, to));
+            }
         }
+
         else if (this.getColour() == PlayerColour.BLACK) {
             if (from.getRow() == 1) {
                 to = new Coordinates(from.getRow()+2, from.getCol());
-                allowedMoves.add(new Move(from, to));
+                if (board.get(to) == null) {
+                    allowedMoves.add(new Move(from, to));
+                }
             }
             to = new Coordinates(from.getRow()+1, from.getCol());
-            allowedMoves.add(new Move(from, to));
+            if (board.get(to) == null) {
+                allowedMoves.add(new Move(from, to));
+            }
         }
 
-        allowedMoves.add(new Move(from, to));
         return allowedMoves;
     }
 }
