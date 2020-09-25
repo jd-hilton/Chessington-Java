@@ -15,6 +15,34 @@ public class Bishop extends AbstractPiece {
 
     @Override
     public List<Move> getAllowedMoves(Coordinates from, Board board) {
-        return new ArrayList<>();
+        List<Move> allowedMoves = new ArrayList<>();
+        Coordinates to = null;
+        moveDiagonallyUpLeft(board, from, allowedMoves);
+
+        return allowedMoves;
+    }
+
+    public void moveDiagonallyUpLeft(Board board, Coordinates from, List<Move> allowedMoves) {
+        boolean pieceInWay = false;
+        boolean outsideBoard = false;
+        int row = from.getRow();
+        int column = from.getCol();
+        while (!pieceInWay && !outsideBoard) {
+            row--;
+            column--;
+            if (row >= 0 && column >= 0) {
+                Coordinates to = new Coordinates(row, column);
+                if (board.get(to) == null) {
+                    allowedMoves.add(new Move(from, to));
+                } else if (board.get(to) != null) {
+                    if (board.get(to).getColour() != this.getColour()) {
+                        allowedMoves.add(new Move(from, to));
+                    }
+                    pieceInWay = true;
+                }
+            } else {
+                outsideBoard = true;
+            }
+        }
     }
 }
