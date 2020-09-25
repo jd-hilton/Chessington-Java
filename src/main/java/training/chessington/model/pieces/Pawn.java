@@ -47,7 +47,8 @@ public class Pawn extends AbstractPiece {
         if (this.getColour() == PlayerColour.WHITE) {
             if (from.getRow() == 6) {
                 Coordinates to = new Coordinates(from.getRow()-2, from.getCol());
-                if (board.get(to) == null) {
+                Coordinates behindTo = new Coordinates(from.getRow()-1, from.getCol());
+                if (board.get(to) == null && board.get(behindTo) == null) {
                     allowedMoves.add(new Move(from, to));
                 }
             }
@@ -55,7 +56,8 @@ public class Pawn extends AbstractPiece {
         if (this.getColour() == PlayerColour.BLACK) {
             if (from.getRow() == 1) {
                 Coordinates to = new Coordinates(from.getRow()+2, from.getCol());
-                if (board.get(to) == null) {
+                Coordinates behindTo = new Coordinates(from.getRow()+1, from.getCol());
+                if (board.get(to) == null && board.get(behindTo) == null) {
                     allowedMoves.add(new Move(from, to));
                 }
             }
