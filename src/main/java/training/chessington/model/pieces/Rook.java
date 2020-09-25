@@ -19,6 +19,8 @@ public class Rook extends AbstractPiece {
         Coordinates to = null;
         moveUpTheBoard(board, from, allowedMoves);
         moveDownTheBoard(board, from, allowedMoves);
+        moveLeftAcrossBoard(board, from, allowedMoves);
+        moveRightAcrossBoard(board, from, allowedMoves);
 
         return allowedMoves;
     }
@@ -44,6 +46,40 @@ public class Rook extends AbstractPiece {
         boolean pieceInWay = false;
         for (int i = from.getRow() + 1; i <= 7; i++) {
             Coordinates to = new Coordinates(i, from.getCol());
+            if (!pieceInWay) {
+                if (board.get(to) == null) {
+                    allowedMoves.add(new Move(from, to));
+                } else if (board.get(to) != null) {
+                    if (board.get(to).getColour() != this.getColour()) {
+                        allowedMoves.add(new Move(from, to));
+                    }
+                    pieceInWay = true;
+                }
+            }
+        }
+    }
+
+    public void moveLeftAcrossBoard (Board board, Coordinates from, List<Move> allowedMoves) {
+        boolean pieceInWay = false;
+        for (int i = from.getCol() - 1; i >= 0; i--) {
+            Coordinates to = new Coordinates(from.getRow(), i);
+            if (!pieceInWay) {
+                if (board.get(to) == null) {
+                    allowedMoves.add(new Move(from, to));
+                } else if (board.get(to) != null) {
+                    if (board.get(to).getColour() != this.getColour()) {
+                        allowedMoves.add(new Move(from, to));
+                    }
+                    pieceInWay = true;
+                }
+            }
+        }
+    }
+
+    public void moveRightAcrossBoard (Board board, Coordinates from, List<Move> allowedMoves) {
+        boolean pieceInWay = false;
+        for (int i = from.getCol() + 1; i <= 7; i++) {
+            Coordinates to = new Coordinates(from.getRow(), i);
             if (!pieceInWay) {
                 if (board.get(to) == null) {
                     allowedMoves.add(new Move(from, to));

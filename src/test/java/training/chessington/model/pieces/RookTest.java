@@ -143,4 +143,87 @@ public class RookTest {
         assertThat(moves).contains(new Move(coords, coords.plus(+6,0)));
         assertThat(moves).contains(new Move(coords, coords.plus(+7,0)));
     }
+
+    @Test
+    public void rookCanMoveRightAcrossTheBoardWhite() {
+        // Arrange
+        Board board = Board.empty();
+        Piece rook = new Rook(PlayerColour.WHITE);
+        Coordinates coords = new Coordinates(0,0);
+        board.placePiece(coords, rook);
+
+        // Act
+        List<Move> moves = rook.getAllowedMoves(coords, board);
+
+        // Assert
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+1)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+2)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+3)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+4)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+5)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+6)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+7)));
+    }
+    @Test
+    public void rookCanMoveRightAcrossTheBoardBlack() {
+        // Arrange
+        Board board = Board.empty();
+        Piece rook = new Rook(PlayerColour.BLACK);
+        Coordinates coords = new Coordinates(0,0);
+        board.placePiece(coords, rook);
+
+        // Act
+        List<Move> moves = rook.getAllowedMoves(coords, board);
+
+        // Assert
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+1)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+2)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+3)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+4)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+5)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+6)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,+7)));
+    }
+
+    @Test
+    public void rookCanMoveLeftAcrossTheBoardWhite() {
+        // Arrange
+        Board board = Board.empty();
+        Piece rook = new Rook(PlayerColour.WHITE);
+        Coordinates coords = new Coordinates(0,7);
+        board.placePiece(coords, rook);
+
+        // Act
+        List<Move> moves = rook.getAllowedMoves(coords, board);
+
+        // Assert
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-1)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-2)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-3)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-4)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-5)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-6)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-7)));
+    }
+
+    @Test
+    public void rookCanMoveLeftAcrossTheBoardBlack() {
+        // Arrange
+        Board board = Board.empty();
+        Piece rook = new Rook(PlayerColour.BLACK);
+        Coordinates coords = new Coordinates(0,7);
+        board.placePiece(coords, rook);
+
+        // Act
+        List<Move> moves = rook.getAllowedMoves(coords, board);
+
+        // Assert
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-1)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-2)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-3)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-4)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-5)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-6)));
+        assertThat(moves).contains(new Move(coords, coords.plus(0,-7)));
+    }
 }
